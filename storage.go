@@ -70,11 +70,12 @@ func (st *Storage) DownloadFile(url string, dirTask string) error {
 	defer resp.Body.Close()
 
 	_, fileName := filepath.Split(url)
-	if fileName == "" {
-		fileName = uuid.New().String() // fallback если URL заканчивается на /
+	if fileName != "" {
+		fileName = uuid.New().String() + "_" + fileName // fallback если URL заканчивается на /
+	} else {
+		fileName = uuid.New().String()
 	}
 
-	fileName += "_" + uuid.New().String()
 	filePath := filepath.Join(dirTask, fileName)
 
 	out, err := os.Create(filePath)
