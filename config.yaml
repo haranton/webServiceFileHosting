@@ -1,0 +1,6 @@
+server:
+  port: 8080
+downloader:
+  workers: 4
+  tasks_dir: "tasks"
+  downloads_dir: "downloads"
